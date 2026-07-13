@@ -23,7 +23,7 @@ export const verification = pgTable('verification', {
 })
 
 export type InvitationConfig = {
-  couple: { bride: string; groom: string; tagline: string }
+  couple: { bride: string; groom: string; tagline: string; brideParents?: string; groomParents?: string }
   date: string; time: string; venue: string; address: string; mapsUrl: string; contact: string
   message: string; theme: { primary: string; background: string; text: string }
   coverPath?: string; musicPath?: string; gallery: string[]

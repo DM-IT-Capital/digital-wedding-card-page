@@ -37,5 +37,5 @@ export async function POST(request: Request) {
  if(kind==='cover')config.coverPath=blob.pathname; else if(kind==='music')config.musicPath=blob.pathname; else if(kind==='animation')config.animation={...(config.animation||{effect:'float'}),mediaPath:blob.pathname,mediaType:isVideo?'video':'image',effect:getAnimationEffect(form.get('animationEffect'))}; else config.gallery=[...config.gallery,blob.pathname]
  await db.update(invitations).set({config,updatedAt:new Date()}).where(and(eq(invitations.id,invitationId),eq(invitations.userId,session.user.id)))
  revalidatePath(`/dashboard/${invitationId}`); revalidatePath(`/i/${rows[0].slug}`)
- return NextResponse.json({ok:true,pathname:blob.pathname})
+ return NextResponse.json({ok:true,kind,pathname:blob.pathname,config})
 }

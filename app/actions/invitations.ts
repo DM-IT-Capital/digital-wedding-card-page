@@ -22,7 +22,7 @@ function getAnimationEffect(value: FormDataEntryValue | null, fallback: NonNulla
 }
 
 const defaultConfig: InvitationConfig = {
-  couple: { bride: 'Alya', groom: 'Rayyan', tagline: 'Dengan penuh kesyukuran, kami menjemput anda meraikan cinta kami.' },
+  couple: { bride: 'Alya', groom: 'Rayyan', tagline: 'Dengan penuh kesyukuran, kami menjemput anda meraikan cinta kami.', brideParents: 'Encik Ahmad & Puan Aminah', groomParents: 'Encik Hassan & Puan Zaleha' },
   date: '2026-12-12', time: '11:00', venue: 'Dewan Seri Kasih', address: 'Kuala Lumpur, Malaysia',
   mapsUrl: 'https://maps.google.com', contact: '+60123456789', message: 'Kehadiran dan doa restu anda amat bermakna buat kami.',
   theme: { primary: '#6f7d59', background: '#f5f0e6', text: '#283128' }, gallery: [], animation: { effect: 'float' },
@@ -47,7 +47,13 @@ export async function updateInvitation(id: string, _state: UpdateInvitationState
     const previousAnimation = old.animation || { effect: 'float' as const }
     const config: InvitationConfig = {
       ...old,
-      couple: { bride: String(formData.get('bride') || ''), groom: String(formData.get('groom') || ''), tagline: String(formData.get('tagline') || '') },
+      couple: {
+        bride: String(formData.get('bride') || ''),
+        groom: String(formData.get('groom') || ''),
+        tagline: String(formData.get('tagline') || ''),
+        brideParents: String(formData.get('brideParents') || ''),
+        groomParents: String(formData.get('groomParents') || ''),
+      },
       date: String(formData.get('date') || ''), time: String(formData.get('time') || ''), venue: String(formData.get('venue') || ''),
       address: String(formData.get('address') || ''), mapsUrl: String(formData.get('mapsUrl') || ''), contact: String(formData.get('contact') || ''),
       message: String(formData.get('message') || ''),
